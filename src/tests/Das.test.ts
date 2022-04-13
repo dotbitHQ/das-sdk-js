@@ -109,3 +109,47 @@ test(
   },
   'TPhEgBBVpNZZ4vpeEvh2jMo9WejuTbb5a2',
 )
+
+test(
+  'das.toDottedStyle() phone#123.bit',
+  async (t, account) => {
+    const accounts = await das.toDottedStyle(account)
+
+    t.is(accounts, '123.phone.bit')
+
+  },
+  'phone#123.bit',
+)
+
+test(
+  'das.toDottedStyle() 123.phone.bit',
+  async (t, account) => {
+    const accounts = await das.toDottedStyle(account)
+
+    t.is(accounts, '123.phone.bit')
+
+  },
+  '123.phone.bit',
+)
+
+test(
+  'das.toHashedStyle() 123.phone.bit',
+  async (t, account) => {
+    const accounts = await das.toHashedStyle(account)
+
+    t.is(accounts, 'phone#123.bit')
+
+  },
+  '123.phone.bit',
+)
+
+test(
+  'das.toHashedStyle() phone#123.bit',
+  async (t, account) => {
+    const accounts = await das.toHashedStyle(account)
+
+    t.is(accounts, 'phone#123.bit')
+
+  },
+  'phone#123.bit',
+)
