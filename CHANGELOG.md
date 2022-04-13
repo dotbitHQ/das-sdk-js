@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/DeAccountSystems/das-sdk/compare/v1.3.0...v1.5.0) (2022-04-13)
+
+
+### Features
+
+* add `toHashedStyle` & `toDottedStyle` ([6f4c0ba](https://github.com/DeAccountSystems/das-sdk/commit/6f4c0ba9424ee9aba52a63f1f93619cccd4a0cfb))
+* add test for sub-account ([21354f0](https://github.com/DeAccountSystems/das-sdk/commit/21354f06d957f2688ce38e29ae447b08ba34fba5))
+
 ## [1.3.0](https://github.com/DeAccountSystems/das-sdk/compare/v1.1.2...v1.3.0) (2022-03-08)
 
 
