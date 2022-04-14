@@ -122,9 +122,9 @@ test(
 )
 
 test(
-  'das.toDottedStyle() 123.phone.bit',
+  'Das.toDottedStyle() 123.phone.bit',
   async (t, account) => {
-    const accounts = await das.toDottedStyle(account)
+    const accounts = await Das.toDottedStyle(account)
 
     t.is(accounts, '123.phone.bit')
 
@@ -144,9 +144,9 @@ test(
 )
 
 test(
-  'das.toHashedStyle() phone#123.bit',
+  'Das.toHashedStyle() phone#123.bit',
   async (t, account) => {
-    const accounts = await das.toHashedStyle(account)
+    const accounts = await Das.toHashedStyle(account)
 
     t.is(accounts, 'phone#123.bit')
 

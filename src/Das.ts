@@ -12,6 +12,53 @@ import {
   Provider,
 } from './types/publicTypes'
 
+function isSupportedAccount (account: string): boolean {
+  return /.+\.bit/.test(account) && account.split('.').every(v => Boolean(v.length))
+}
+
+/**
+ * Transform hash-style account to dot-style account
+ * @param inputAccount
+ */
+function toDottedStyle(inputAccount: string) {
+  if (!isSupportedAccount(inputAccount)) {
+    return inputAccount
+  }
+
+  if (!inputAccount.includes('#')) {
+    return inputAccount
+  }
+
+  const [account, suffix] = inputAccount.split('.')
+  const [main, sub] = account.split('#')
+
+  return `${sub}.${main}.${suffix}`
+}
+
+/**
+ * Transform dot-style account to hash-style account
+ * @param inputAccount
+ */
+function toHashedStyle(inputAccount: string) {
+  if (!isSupportedAccount(inputAccount)) {
+    return inputAccount
+  }
+
+  if (inputAccount.includes('#')) {
+    return inputAccount
+  }
+
+  const parts = inputAccount.split('.')
+
+  if (parts.length === 3) {
+    const [sub, main, suffix] = parts
+
+    return `${main}#${sub}.${suffix}`
+  }
+
+  return inputAccount
+}
+
 export class Das {
   readonly url?: string
   readonly provider: Provider
@@ -33,9 +80,13 @@ export class Das {
     }
   }
 
-  isSupportedAccount (account: string): boolean {
-    return /.+\.bit/.test(account) && account.split('.').every(v => Boolean(v.length))
-  }
+  static toDottedStyle = toDottedStyle
+  static toHashedStyle = toHashedStyle
+
+  toDottedStyle = toDottedStyle
+  toHashedStyle = toHashedStyle
+
+  isSupportedAccount = isSupportedAccount
 
   async account(account: string): Promise<AccountInfo & {avatar: string}> {
     if (!this.isSupportedAccount(account)) {
@@ -119,48 +170,5 @@ export class Das {
     }) as { data: {  account: string } }
 
     return res.data.account
-  }
-
-  /**
-   * Transform hash-style account to dot-style account
-   * @param inputAccount
-   */
-  toDottedStyle(inputAccount: string) {
-    if (!this.isSupportedAccount(inputAccount)) {
-      return inputAccount
-    }
-
-    if (!inputAccount.includes('#')) {
-      return inputAccount
-    }
-
-    const [account, suffix] = inputAccount.split('.')
-    const [main, sub] = account.split('#')
-
-    return `${sub}.${main}.${suffix}`
-  }
-
-  /**
-   * Transform dot-style account to hash-style account
-   * @param inputAccount
-   */
-  toHashedStyle(inputAccount: string) {
-    if (!this.isSupportedAccount(inputAccount)) {
-      return inputAccount
-    }
-
-    if (inputAccount.includes('#')) {
-      return inputAccount
-    }
-
-    const parts = inputAccount.split('.')
-
-    if (parts.length === 3) {
-      const [sub, main, suffix] = parts
-
-      return `${main}#${sub}.${suffix}`
-    }
-
-    return inputAccount
   }
 }
