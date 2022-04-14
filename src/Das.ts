@@ -12,7 +12,7 @@ import {
   Provider,
 } from './types/publicTypes'
 
-function isSupportedAccount (account: string): boolean {
+export function isSupportedAccount (account: string): boolean {
   return /.+\.bit/.test(account) && account.split('.').every(v => Boolean(v.length))
 }
 
@@ -20,7 +20,7 @@ function isSupportedAccount (account: string): boolean {
  * Transform hash-style account to dot-style account
  * @param inputAccount
  */
-function toDottedStyle(inputAccount: string) {
+export function toDottedStyle(inputAccount: string) {
   if (!isSupportedAccount(inputAccount)) {
     return inputAccount
   }
@@ -39,7 +39,7 @@ function toDottedStyle(inputAccount: string) {
  * Transform dot-style account to hash-style account
  * @param inputAccount
  */
-function toHashedStyle(inputAccount: string) {
+export function toHashedStyle(inputAccount: string) {
   if (!isSupportedAccount(inputAccount)) {
     return inputAccount
   }
