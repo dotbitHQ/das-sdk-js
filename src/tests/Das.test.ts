@@ -7,7 +7,7 @@ let das: Das
 
 test.before(() => {
   das = new Das({
-    url: 'https://indexer-not-use-in-production-env.da.systems/',
+    url: 'https://indexer-not-use-in-production-env.did.id/',
   })
 })
 
@@ -18,7 +18,7 @@ test(
 
     t.truthy(accountInfo)
     t.is(accountInfo.account, account)
-    t.is(accountInfo.avatar, `https://identicons.da.systems/identicon/${account}`)
+    t.is(accountInfo.avatar, `https://identicons.did.id/identicon/${account}`)
   },
   'phone.bit'
 )

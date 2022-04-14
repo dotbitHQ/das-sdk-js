@@ -110,7 +110,7 @@ export class Das {
 
     return {
       ...data.data.account_info,
-      avatar: `https://identicons.da.systems/identicon/${account}`
+      avatar: `https://identicons.did.id/identicon/${account}`
     }
   }
 
