@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/DeAccountSystems/das-sdk/compare/v1.6.0...v1.7.0) (2022-04-14)
+
+
+### Features
+
+* export some functions ([8fc3923](https://github.com/DeAccountSystems/das-sdk/commit/8fc39231388b3de6b4f919d26864db312b681fe3))
+
 ## [1.6.0](https://github.com/DeAccountSystems/das-sdk/compare/v1.5.0...v1.6.0) (2022-04-14)
 
 
