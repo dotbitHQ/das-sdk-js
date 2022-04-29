@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/DeAccountSystems/das-sdk/compare/v1.7.0...v1.8.0) (2022-04-29)
+
+### Features
+
+* add getAvatar ([7d65ed9](https://github.com/DeAccountSystems/das-sdk/commit/7d65ed9020a44fb8eb813481edae20927000d444)) 
+
 ## [1.7.0](https://github.com/DeAccountSystems/das-sdk/compare/v1.6.0...v1.7.0) (2022-04-14)
 
 
