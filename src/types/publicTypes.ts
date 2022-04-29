@@ -5,10 +5,15 @@ import {
 
 export type DasSupportedNetworks = typeof DasSupportedNetwork.type
 
-export type NamingServiceSource = {url?: string, provider?: Provider}; // data source，either provider or url
+export type NamingServiceSource = {
+  // data source，either provider or url
+  url?: string,
+  provider?: Provider,
+  avatarResolver?: string, // the base of the service resolving avatar, default is https://identicons.did.id/resolve
+};
 
 export type DasSource = NamingServiceSource & {
-  network?: DasSupportedNetworks
+  network?: DasSupportedNetworks,
 }
 
 export enum NamingServiceName {

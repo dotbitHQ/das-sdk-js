@@ -153,3 +153,23 @@ test(
   },
   'phone#123.bit',
 )
+
+test(
+  'Das.getAvatar() phone.bit',
+  async (t, account) => {
+    const result = await das.getAvatar(account)
+
+    t.is(result.url, 'https://thiscatdoesnotexist.com/')
+  },
+  'phone.bit'
+)
+
+test(
+  'Das.getAvatar() dasdeveloper.bit',
+  async (t, account) => {
+    const result = await das.getAvatar(account)
+
+    t.is(result.url, 'https://identicons.did.id/identicon/dasdeveloper.bit')
+  },
+  'dasdeveloper.bit'
+)

@@ -3,7 +3,7 @@ import ConfigurationError, { ConfigurationErrorCode } from './errors/configurati
 import ResolutionError, { ResolutionErrorCode } from './errors/resolutionError'
 import {
   AccountData,
-  AccountInfo, AccountRecord, AccountRecordsData,
+  AccountInfo, AccountRecord, AccountRecordsData, GetAvatarRes,
 } from './types/AccountData'
 import {
   KeyDescriptor,
@@ -11,6 +11,7 @@ import {
   NamingServiceSource,
   Provider,
 } from './types/publicTypes'
+import Networking from './utils/Networking'
 
 export function isSupportedAccount (account: string): boolean {
   return /.+\.bit/.test(account) && account.split('.').every(v => Boolean(v.length))
@@ -62,6 +63,7 @@ export function toHashedStyle(inputAccount: string) {
 export class Das {
   readonly url?: string
   readonly provider: Provider
+  readonly avatarResolver: string
   readonly name = NamingServiceName.DAS
 
   constructor (source: NamingServiceSource = {}) {
@@ -77,6 +79,13 @@ export class Das {
       throw new ConfigurationError(ConfigurationErrorCode.UnspecifiedUrl, {
         method: NamingServiceName.DAS
       })
+    }
+
+    if (source.avatarResolver) {
+      this.avatarResolver = source.avatarResolver
+    }
+    else {
+      this.avatarResolver = 'https://identicons.did.id/resolve'
     }
   }
 
@@ -112,6 +121,11 @@ export class Das {
       ...data.data.account_info,
       avatar: `https://identicons.did.id/identicon/${account}`
     }
+  }
+
+  async getAvatar(account: string): Promise<GetAvatarRes> {
+    const result = await Networking.fetch(`${this.avatarResolver}/${account}`)
+    return result.json()
   }
 
   async records(account: string, key?: string): Promise<AccountRecord[]> {

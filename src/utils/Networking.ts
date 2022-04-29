@@ -21,7 +21,7 @@ export default class Networking {
 
   static async fetch(
     url: string,
-    options: {body?: string; headers?: Record<string, string>; method?: string},
+    options?: {body?: string; headers?: Record<string, string>; method?: string},
   ): Promise<FetchResponse | Response> {
     return this.isNode() ? nodeFetch(url, options) : window.fetch(url, options);
   }

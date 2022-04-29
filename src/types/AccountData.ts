@@ -49,3 +49,8 @@ export interface AccountData {
   },
   account_info: AccountInfo
 }
+
+export interface GetAvatarRes {
+  linkage: Array<{type: string, content: string}>,
+  url: string,
+}
