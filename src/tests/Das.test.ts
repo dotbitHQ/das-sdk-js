@@ -173,3 +173,15 @@ test(
   },
   'dasdeveloper.bit'
 )
+
+test(
+  'Das.getAvatar() not exist account',
+  async (t, account) => {
+    const result = await das.getAvatar(account)
+
+    console.log(result)
+
+    t.is(result.url, 'https://identicons.did.id/identicon/thisaccountcannot_exist.bit')
+  },
+  'thisaccountcannot_exist.bit'
+)

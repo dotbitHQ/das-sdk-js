@@ -96,6 +96,11 @@ export interface AccountInfo {
   manager_key: string
 }
 
+export interface GetAvatarRes {
+  linkage: Array<{type: string, content: string}>,
+  url: string,
+}
+
 export interface KeyDescriptor {
   type: 'blockchain',
   key_info: {
@@ -122,6 +127,9 @@ class Das {
 
   // Get the reverse record of the given address
   reverseRecord(descriptor: KeyDescriptor): Promise<string>
+  
+  // Resolve the avatar of the given account
+  getAvatar(): Promise<GetAvatarRes>
 }
 ```
 
@@ -148,6 +156,9 @@ Returns basic info of an account, including avatar, manager/owner address.
 
 ### das.reverseRecord(descriptor: KeyDescriptor): Promise<string>
 Return the reverse record(.bit Alias) of the given address. For more information, pleas checkout [.bit Alias](https://www.did.id/bit-alias)
+
+### das.getAvatar(account: string)
+This function will resolve avatar of a specific account.
 
 ## Examples
 Initialize using official indexer
