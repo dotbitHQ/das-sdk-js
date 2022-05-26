@@ -85,7 +85,7 @@ export class Das {
       this.avatarResolver = source.avatarResolver
     }
     else {
-      this.avatarResolver = 'https://identicons.did.id/resolve'
+      this.avatarResolver = 'https://identicons.did.id/avatar/resolve'
     }
   }
 
