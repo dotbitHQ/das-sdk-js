@@ -10,6 +10,7 @@ type ResolutionErrorOptions = {
   method?: ResolutionMethod;
   methodName?: string;
   account?: string;
+  accountId?: string;
   currencyTicker?: string;
   recordName?: string;
   namingService?: string;

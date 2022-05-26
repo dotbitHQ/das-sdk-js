@@ -4,10 +4,15 @@ import { Das } from '../Das'
 import { ChainId, CoinType } from '../types/publicTypes'
 
 let das: Das
+let dasTest: Das
 
 test.before(() => {
   das = new Das({
     url: 'https://indexer-not-use-in-production-env.did.id/',
+  })
+
+  dasTest = new Das({
+    url: 'https://test-indexer-not-use-in-production-env.did.id/'
   })
 })
 
@@ -20,7 +25,19 @@ test(
     t.is(accountInfo.account, account)
     t.is(accountInfo.avatar, `https://identicons.did.id/identicon/${account}`)
   },
-  'phone.bit'
+  'imac.bit'
+)
+
+test(
+  'das.accountById()',
+  async (t, accountId) => {
+    const accountInfo = await dasTest.accountById(accountId)
+
+    t.truthy(accountInfo)
+    t.is(accountInfo.account_id_hex, accountId)
+    console.log(accountInfo)
+  },
+  '0x5728088435fb8788472a9ca601fbc0b9cbea8be3'
 )
 
 test(
@@ -45,7 +62,7 @@ test(
     t.deepEqual(ethRecords, filteredRecords)
     t.is(ethRecords.length, filteredRecords.length)
   },
-  'phone.bit',
+  'imac.bit',
 )
 
 test(
@@ -58,7 +75,7 @@ test(
     t.is(addrs.length, records.length)
     t.deepEqual(addrs, records)
   },
-  'phone.bit',
+  'imac.bit',
 )
 
 test(
@@ -155,13 +172,13 @@ test(
 )
 
 test(
-  'Das.getAvatar() phone.bit',
+  'Das.getAvatar() imac.bit',
   async (t, account) => {
     const result = await das.getAvatar(account)
 
     t.is(result.url, 'https://thiscatdoesnotexist.com/')
   },
-  'phone.bit'
+  'imac.bit'
 )
 
 test(
@@ -178,8 +195,6 @@ test(
   'Das.getAvatar() not exist account',
   async (t, account) => {
     const result = await das.getAvatar(account)
-
-    console.log(result)
 
     t.is(result.url, 'https://identicons.did.id/identicon/thisaccountcannot_exist.bit')
   },

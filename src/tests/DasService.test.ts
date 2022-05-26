@@ -35,8 +35,8 @@ test(
     t.is(ethAddress, address)
     t.true(ethAddress === ethAddressWithUpperCaseKey)
   },
-  'phone.bit',
-  '0xd9b2a3a7c056a77ef21a7706b3c763093edf76de'
+  'imac.bit',
+  '0x1d643fac9a463c9d544506006a6348c234da485f'
 )
 
 test(
@@ -45,9 +45,9 @@ test(
     const records = await dasService.records(account, keys)
 
     t.not(Object.keys(records).length, 0)
-    t.is(records['address.eth'], '0xd9b2a3a7c056a77ef21a7706b3c763093edf76de')
+    t.is(records['address.eth'], '0x1d643fac9a463c9d544506006a6348c234da485f')
   },
-  'phone.bit',
+  'imac.bit',
   ['address.eth', 'profile.phone', 'address.btc'],
 )
 
@@ -56,8 +56,8 @@ test(
   async (t, account) => {
     const accountRes = await dasService.account(account)
 
-    t.is(accountRes.avatar, 'https://identicons.did.id/identicon/phone.bit')
-    t.is(accountRes.account, 'phone.bit')
+    t.is(accountRes.avatar, 'https://identicons.did.id/identicon/imac.bit')
+    t.is(accountRes.account, account)
 
     t.true(accountRes.records.length > 0)
 
@@ -66,7 +66,7 @@ test(
     t.is(typeof accountRes.profile, 'object')
     t.truthy(accountRes.address['eth'].value)
   },
-  'phone.bit',
+  'imac.bit',
 )
 
 test(
