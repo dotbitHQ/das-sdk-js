@@ -112,6 +112,7 @@ export class Das {
     }) as {data: AccountData}
 
     if (!data.data) {
+      // error code = 20007
       throw new ResolutionError(ResolutionErrorCode.UnregisteredAccount, {
         account: account,
       })
@@ -122,6 +123,29 @@ export class Das {
       avatar: `https://identicons.did.id/identicon/${account}`
     }
   }
+
+  async accountById(accountId: string): Promise<AccountInfo & {avatar: string}> {
+    const data = await this.provider.request({
+      method: 'das_accountInfo',
+      params: [{
+        account_id: accountId,
+      }]
+    }) as {data: AccountData}
+
+    console.log(data)
+    if (!data.data) {
+      // error code = 20007
+      throw new ResolutionError(ResolutionErrorCode.UnregisteredAccount, {
+        accountId: accountId,
+      })
+    }
+
+    return {
+      ...data.data.account_info,
+      avatar: `https://identicons.did.id/identicon/${accountId}`
+    }
+  }
+
 
   async getAvatar(account: string): Promise<GetAvatarRes> {
     const result = await Networking.fetch(`${this.avatarResolver}/${account}`)
