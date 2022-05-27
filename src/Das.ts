@@ -132,7 +132,6 @@ export class Das {
       }]
     }) as {data: AccountData}
 
-    console.log(data)
     if (!data.data) {
       // error code = 20007
       throw new ResolutionError(ResolutionErrorCode.UnregisteredAccount, {
