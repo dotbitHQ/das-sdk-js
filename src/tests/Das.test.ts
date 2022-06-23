@@ -8,7 +8,7 @@ let dasTest: Das
 
 test.before(() => {
   das = new Das({
-    url: 'https://indexer-not-use-in-production-env.did.id/',
+    url: 'https://indexer-v1.did.id/',
   })
 
   dasTest = new Das({
@@ -23,10 +23,18 @@ test(
 
     t.truthy(accountInfo)
     t.is(accountInfo.account, account)
-    t.is(accountInfo.avatar, `https://identicons.did.id/identicon/${account}`)
+    t.is(accountInfo.avatar, `https://display.did.id/identicon/${account}`)
   },
   'imac.bit'
 )
+
+test('subAccount', async (t, account) => {
+  const accountInfo = await das.account(account)
+  const records = await das.records(account, 'eth')
+
+  t.truthy(accountInfo)
+  t.is(records[0].value, '0x1D643FAc9a463c9d544506006a6348c234dA485f')
+}, 'jeff.bitofficial.bit')
 
 test(
   'das.accountById()',
@@ -186,7 +194,7 @@ test(
   async (t, account) => {
     const result = await das.getAvatar(account)
 
-    t.is(result.url, 'https://identicons.did.id/identicon/dasdeveloper.bit')
+    t.is(result.url, 'https://display.did.id/identicon/dasdeveloper.bit')
   },
   'dasdeveloper.bit'
 )
@@ -196,7 +204,7 @@ test(
   async (t, account) => {
     const result = await das.getAvatar(account)
 
-    t.is(result.url, 'https://identicons.did.id/identicon/thisaccountcannot_exist.bit')
+    t.is(result.url, 'https://display.did.id/identicon/thisaccountcannot_exist.bit')
   },
   'thisaccountcannot_exist.bit'
 )

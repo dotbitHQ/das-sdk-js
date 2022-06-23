@@ -85,7 +85,7 @@ export class Das {
       this.avatarResolver = source.avatarResolver
     }
     else {
-      this.avatarResolver = 'https://identicons.did.id/avatar/resolve'
+      this.avatarResolver = 'https://display.did.id/avatar/resolve'
     }
   }
 
@@ -120,7 +120,7 @@ export class Das {
 
     return {
       ...data.data.account_info,
-      avatar: `https://identicons.did.id/identicon/${account}`
+      avatar: `https://display.did.id/identicon/${account}`
     }
   }
 
@@ -141,7 +141,7 @@ export class Das {
 
     return {
       ...data.data.account_info,
-      avatar: `https://identicons.did.id/identicon/${accountId}`
+      avatar: `https://display.did.id/identicon/${accountId}`
     }
   }
 

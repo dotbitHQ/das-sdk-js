@@ -9,7 +9,7 @@ export type NamingServiceSource = {
   // data source，either provider or url
   url?: string,
   provider?: Provider,
-  avatarResolver?: string, // the base of the service resolving avatar, default is https://identicons.did.id/resolve
+  avatarResolver?: string, // the base of the service resolving avatar, default is https://display.did.id/avatar/resolve
 };
 
 export type DasSource = NamingServiceSource & {

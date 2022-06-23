@@ -40,7 +40,7 @@ export interface ConstructedAccount {
 
 export class DasService extends NamingService {
   static readonly UrlMap: BlockchainNetworkUrlMap = {
-    'mainnet': 'https://indexer-not-use-in-production-env.did.id',
+    'mainnet': 'https://indexer-v1.did.id',
     'testnet': 'http://47.243.90.165:8223',
     'aggron': 'http://47.243.90.165:8223',
   }
@@ -263,7 +263,7 @@ export class DasService extends NamingService {
 
     return {
       account: accountData.account,
-      avatar: `https://identicons.did.id/identicon/${account}`,
+      avatar: `https://display.did.id/identicon/${account}`,
 
       profile: resolveOneFromRecords(profiles),
       address: resolveOneFromRecords(addresses),

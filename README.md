@@ -32,13 +32,13 @@ das.records('dasloveckb.bit').then(console.log)
 //   label: 'coinbase',
 //   value: '0x1234...4567',
 //   ttl: 300,
-//   avatar: 'https://identicons.did.id/identicon/dasloveckb.bit'
+//   avatar: 'https://display.did.id/identicon/dasloveckb.bit'
 // }, {
 //   key: 'address.eth',
 //   label: 'onchain',
 //   value: '0x2345...6789',
 //   ttl: 300,
-//   avatar: 'https://identicons.did.id/identicon/dasloveckb.bit'
+//   avatar: 'https://display.did.id/identicon/dasloveckb.bit'
 // }]
 ```
 
@@ -49,9 +49,7 @@ To set up das-sdk, you need to provide `url`.
 
 We suggest that developers run their own [das-account-indexer](https://github.com/dotbitHQ/das-account-indexer).
 
-> However, if you are new to .bit and want to test das-sdk, you can use this indexer run by .bit team as a start: `https://indexer-not-use-in-production-env.did.id`. It provides both forward resolution and reverse record resolution.
-> 
-> But do remember that: do not use this in production environment.
+> However, if you are new to .bit and want to test das-sdk, you can use this indexer run by .bit team as a start: `https://indexer-v1.did.id`. It provides both forward resolution and reverse record resolution.
 
 > Meanwhile, we provide an official basic-indexer which only exposed some basic apis. 
 > If you have trouble setting up an indexer, you can use this as an alternative.
@@ -166,7 +164,7 @@ Initialize using official indexer
 import Das from 'das-sdk'
 
 const das = new Das({
-  url: 'https://indexer-not-use-in-production-env.did.id',
+  url: 'https://indexer-v1.did.id',
 })
 ```
 
@@ -179,13 +177,13 @@ das.records('dasloveckb.bit', 'address.btc').then(console.log)
 //   label: 'coinbase',
 //   value: 'bc12345...xyz',
 //   ttl: 300,
-//   avatar: 'https://identicons.did.id/identicon/dasloveckb.bit''
+//   avatar: 'https://display.did.id/identicon/dasloveckb.bit''
 // }, {
 //   key: 'address.btc',
 //   label: 'onchain',
 //   value: 'bc17890...zyx',
 //   ttl: 300,
-//   avatar: 'https://identicons.did.id/identicon/dasloveckb.bit'
+//   avatar: 'https://display.did.id/identicon/dasloveckb.bit'
 // }]
 
 ```
@@ -209,7 +207,7 @@ das.account('dasloveckb.bit').then(console.log)
 // ==>
 // {
 //   "account": "dasloveckb.bit",
-//   avatar: 'https://identicons.did.id/identicon/dasloveckb.bit',
+//   avatar: 'https://display.did.id/identicon/dasloveckb.bit',
 //   "account_id_hex": "0x5f560ec1edc638d7dab7c7a1ca8c3b0f6ed1848b",
 //   "next_account_id_hex": "0x5f5c20f6cd95388378771ca957ce665f084fe23b",
 //   "create_at_unix": 1626955542,

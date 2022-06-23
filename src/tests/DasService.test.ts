@@ -56,7 +56,7 @@ test(
   async (t, account) => {
     const accountRes = await dasService.account(account)
 
-    t.is(accountRes.avatar, 'https://identicons.did.id/identicon/imac.bit')
+    t.is(accountRes.avatar, 'https://display.did.id/identicon/imac.bit')
     t.is(accountRes.account, account)
 
     t.true(accountRes.records.length > 0)
@@ -75,6 +75,6 @@ test(
     const das = await DasService.autonetwork()
 
     t.is(das.network, 'mainnet')
-    t.is(das.url, 'https://indexer-not-use-in-production-env.did.id')
+    t.is(das.url, 'https://indexer-v1.did.id')
   },
 )
