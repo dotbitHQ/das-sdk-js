@@ -4,16 +4,16 @@ import { Das } from '../Das'
 import { ChainId, CoinType } from '../types/publicTypes'
 
 let das: Das
-let dasTest: Das
+// let dasTest: Das
 
 test.before(() => {
   das = new Das({
     url: 'https://indexer-v1.did.id/',
   })
 
-  dasTest = new Das({
-    url: 'https://test-indexer-not-use-in-production-env.did.id/'
-  })
+  // dasTest = new Das({
+  //   url: 'https://test-indexer-not-use-in-production-env.did.id/'
+  // })
 })
 
 test(
@@ -30,20 +30,18 @@ test(
 
 test('subAccount', async (t, account) => {
   const accountInfo = await das.account(account)
-  const records = await das.records(account, 'eth')
 
-  t.truthy(accountInfo)
-  t.is(records[0].value, '0x1D643FAc9a463c9d544506006a6348c234dA485f')
+  t.truthy(accountInfo.account === account)
 }, 'jeff.bitofficial.bit')
 
 test(
   'das.accountById()',
   async (t, accountId) => {
-    const accountInfo = await dasTest.accountById(accountId)
+    const accountInfo = await das.accountById(accountId)
 
     t.truthy(accountInfo)
     t.is(accountInfo.account_id_hex, accountId)
-    console.log(accountInfo)
+    t.is(accountInfo.account, `imac.bit`)
   },
   '0x5728088435fb8788472a9ca601fbc0b9cbea8be3'
 )
@@ -98,7 +96,7 @@ test(
       }
     })
 
-    t.is(account, 'imac.bit')
+    t.is(account, 'jeffx.bit')
   },
   '0x1d643fac9a463c9d544506006a6348c234da485f',
 )
@@ -128,11 +126,11 @@ test(
 test(
   'das.accountsForOwner() empty',
   async (t, address) => {
-    const accounts = await das.accountsForOwner(address)
+    const accounts = await das.accountsForOwner(address, '195')
 
-    t.falsy(accounts.length > 0)
+    t.true(accounts.length === 0)
   },
-  'TPhEgBBVpNZZ4vpeEvh2jMo9WejuTbb5a2',
+  'TYUymUWHtWys8HmkaqEQvf1XSvCBb59qFr',
 )
 
 test(
@@ -184,7 +182,7 @@ test(
   async (t, account) => {
     const result = await das.getAvatar(account)
 
-    t.is(result.url, 'https://thiscatdoesnotexist.com/')
+    t.is(result.url, 'https://thiscatdoesnotexist.com')
   },
   'imac.bit'
 )

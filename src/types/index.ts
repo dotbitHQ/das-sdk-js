@@ -4,6 +4,8 @@ export interface BlockchainNetworkUrlMap {
 
 export type ProviderParams = unknown[] | Record<string, unknown>;
 export interface RequestArguments {
+  id: number,
+  jsonrpc: string,
   method: string;
   params?: ProviderParams;
 }

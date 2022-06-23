@@ -60,6 +60,8 @@ export function toHashedStyle(inputAccount: string) {
   return inputAccount
 }
 
+let jsonrpcId = 0
+
 export class Das {
   readonly url?: string
   readonly provider: Provider
@@ -105,6 +107,8 @@ export class Das {
     }
 
     const data = await this.provider.request({
+      id: ++jsonrpcId,
+      jsonrpc: `2.0`,
       method: 'das_accountInfo',
       params: [{
         account,
@@ -126,6 +130,8 @@ export class Das {
 
   async accountById(accountId: string): Promise<AccountInfo & {avatar: string}> {
     const data = await this.provider.request({
+      id: ++jsonrpcId,
+      jsonrpc: `2.0`,
       method: 'das_accountInfo',
       params: [{
         account_id: accountId,
@@ -159,6 +165,8 @@ export class Das {
     }
 
     const res = await this.provider.request({
+      id: ++jsonrpcId,
+      jsonrpc: `2.0`,
       method: 'das_accountRecords',
       params: [{
         account,
@@ -187,6 +195,8 @@ export class Das {
 
   async accountsForOwner(address: string, coinType = '60'): Promise<Array<{account: string}>> {
     const res: any = await this.provider.request({
+      id: ++jsonrpcId,
+      jsonrpc: `2.0`,
       method: 'das_accountList',
       params: [{
         "type": "blockchain",
@@ -202,6 +212,8 @@ export class Das {
 
   async reverseRecord(descriptor: KeyDescriptor): Promise<string> {
     const res = await this.provider.request({
+      id: ++jsonrpcId,
+      jsonrpc: `2.0`,
       method: 'das_reverseRecord',
       params: [descriptor]
     }) as { data: {  account: string } }

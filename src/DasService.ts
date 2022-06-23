@@ -38,6 +38,7 @@ export interface ConstructedAccount {
   records: AccountRecord[],
 }
 
+let jsonrpcId = 0
 export class DasService extends NamingService {
   static readonly UrlMap: BlockchainNetworkUrlMap = {
     'mainnet': 'https://indexer-v1.did.id',
@@ -186,6 +187,8 @@ export class DasService extends NamingService {
     }
 
     const res = await this.provider.request({
+      id: ++jsonrpcId,
+      jsonrpc: `2.0`,
       method: 'das_accountRecords',
       params: [{
         account,
@@ -281,6 +284,8 @@ export class DasService extends NamingService {
 
   async getReverseAccount(descriptor: KeyDescriptor): Promise<string> {
     const data = await this.provider.request({
+      id: ++jsonrpcId,
+      jsonrpc: `2.0`,
       method: 'das_reverseRecord',
       params: [descriptor],
     }) as { data: {  account: string } }
@@ -297,6 +302,8 @@ export class DasService extends NamingService {
 
   async getAccountData(account: string): Promise<AccountInfo> {
     const data = await this.provider.request({
+      id: ++jsonrpcId,
+      jsonrpc: `2.0`,
       method: 'das_accountInfo',
       params: [{
         account,
@@ -320,6 +327,8 @@ export class DasService extends NamingService {
     }
 
     const res = await this.provider.request({
+      id: ++jsonrpcId,
+      jsonrpc: `2.0`,
       method: 'das_accountRecords',
       params: [{
         account,
